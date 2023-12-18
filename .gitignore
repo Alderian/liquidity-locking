@@ -14,7 +14,8 @@ node_modules/
 
 .prettierrc.js
 pnpm-lock.yaml
-package.json
+package-lock.json
+yarn.lock
 
 contractsInfo.json
 deployments/hardhat
