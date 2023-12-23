@@ -1,8 +1,6 @@
 // script used to fund account from a geth coinbase account (geth --dev)
+import {JsonRpcProvider, TransactionResponse, toBeHex} from 'ethers';
 import {ethers, network} from 'hardhat';
-import {BigNumber, providers} from 'ethers';
-
-const {JsonRpcProvider} = providers;
 
 function wait(numSec: number): Promise<void> {
 	return new Promise<void>((resolve) => {
@@ -34,7 +32,7 @@ async function main() {
 		console.log('no coinbase');
 		return;
 	}
-	const accounts = await ethers.provider.listAccounts();
+	const accounts = await ethers.getSigners();
 	let accountsToFund = accounts;
 	if (coinbase === accounts[0]) {
 		accountsToFund = accounts.slice(1);
@@ -42,22 +40,22 @@ async function main() {
 
 	const coinbaseBalance = await ethers.provider.getBalance(coinbase);
 	const nonce = await ethers.provider.getTransactionCount(coinbase);
-	const maxAmount = BigNumber.from('10000000000000000000');
-	let amount = coinbaseBalance.div(accountsToFund.length);
-	if (amount.gt(maxAmount)) {
+	const maxAmount = BigInt('10000000000000000000');
+	let amount = coinbaseBalance / BigInt(accountsToFund.length);
+	if (amount > maxAmount) {
 		amount = maxAmount;
 	}
 
-	if (coinbaseBalance.gt(0)) {
+	if (coinbaseBalance > 0) {
 		const rawProvider = new JsonRpcProvider(network.config.url);
-		const coinbaseSigner = rawProvider.getSigner(coinbase);
-		const txs: providers.TransactionResponse[] = [];
+		const coinbaseSigner = await rawProvider.getSigner(coinbase);
+		const txs: TransactionResponse[] = [];
 		for (let i = 0; i < accountsToFund.length; i++) {
 			const to = accountsToFund[i];
 			const tx = await coinbaseSigner.sendTransaction({
 				to,
-				value: amount.sub(21000).toHexString(),
-				nonce: BigNumber.from(nonce + i).toHexString(),
+				value: amount - BigInt(21000),
+				nonce: nonce + i,
 			});
 			console.log(`${to}: ${tx.hash}`);
 			txs.push(tx);
