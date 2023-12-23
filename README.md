@@ -1,4 +1,6 @@
-# Boilerplate for ethereum solidity smart contract development
+# Liquidity locking
+
+Very simple contract for locking liquidity (Uniswap v3 LP) and continue claiming earned fees
 
 ## INSTALL
 
@@ -12,7 +14,7 @@ There are 3 flavors of tests: hardhat, dapptools and forge
 
 ### hardhat
 
-- One using hardhat that can leverage hardhat-deploy to reuse deployment procedures and named accounts:
+-   One using hardhat that can leverage hardhat-deploy to reuse deployment procedures and named accounts:
 
 ```bash
 yarn test
