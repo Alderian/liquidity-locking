@@ -8,9 +8,15 @@ Very simple contract for locking liquidity (Uniswap v3 LP) and continue claiming
 yarn
 ```
 
+or use
+
+```bash
+ pnpm i
+```
+
 ## TEST
 
-There are 3 flavors of tests: hardhat, dapptools and forge
+There are 2 flavors of tests: hardhat and forge. tests are on both fw to catch different aspects.
 
 ### hardhat
 
@@ -18,32 +24,6 @@ There are 3 flavors of tests: hardhat, dapptools and forge
 
 ```bash
 yarn test
-```
-
-### [dapptools](https://dapp.tools)
-
-```bash
-dapp test
-```
-
-The latter requires additional step to set up your machine:
-
-Install dapptools (Following instruction [here](https://github.com/dapphub/dapptools#installation)):
-
-```bash
-# user must be in sudoers
-curl -L https://nixos.org/nix/install | sh
-
-# Run this or login again to use Nix
-. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-
-curl https://dapp.tools/install | sh
-```
-
-Then install solc with the correct version:
-
-```bash
-nix-env -f https://github.com/dapphub/dapptools/archive/master.tar.gz -iA solc-static-versions.solc_0_8_9
 ```
 
 ### forge

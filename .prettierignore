@@ -11,7 +11,9 @@ _lib/
 .dappp
 *.json
 .yalc
+lib/forge-std
 
 .prettierrc.js
 pnpm-lock.yaml
 package.json
+.git*

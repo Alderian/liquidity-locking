@@ -5,6 +5,7 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.1",
     "@nomicfoundation/hardhat-ethers": "^3.0.2",
+    "@nomicfoundation/hardhat-foundry": "^1.1.1",
     "@openzeppelin/contracts": "^4.9.2",
     "@typechain/ethers-v6": "^0.4.3",
     "@typechain/hardhat": "^8.0.0",
@@ -16,7 +17,7 @@
     "dotenv": "^16.3.1",
     "ethers": "^6.6.1",
     "fs-extra": "^11.1.1",
-    "hardhat": "^2.16.0",
+    "hardhat": "^2.19.0",
     "hardhat-deploy": "^0.11.34",
     "hardhat-deploy-ethers": "^0.4.0",
     "hardhat-deploy-tenderly": "^0.2.0",
